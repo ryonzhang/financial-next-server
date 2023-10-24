@@ -1,11 +1,13 @@
 import { Transaction } from '@/app/models/models';
+import {toast} from "react-toastify";
 
 const BASE_URL='https://oyster-app-xcrss.ondigitalocean.app'
 
 export const getTransactions = async (): Promise<Transaction[]> => {
   const res = await fetch(`${BASE_URL}/transactions`);
   if (!res.ok) {
-    throw new Error('Failed to get transactions');
+    const text=await res.text()
+    toast(text)
   }
   let transactions:Transaction[]=[]
   const rawTransactions=await res.json()
@@ -17,25 +19,33 @@ export const getTransactions = async (): Promise<Transaction[]> => {
 };
 
 export const postTransactions = async (data:string) => {
-  console.log(data)
+  const id=toast('Posting transactions in progress...')
   const res = await fetch(`${BASE_URL}/transactions`,{method:'POST',headers:{'Content-Type':'text/csv'},body:data});
   if (!res.ok) {
-    throw new Error('Failed to add transactions');
+    const text=await res.text()
+    toast(text)
   }
+  toast.dismiss(id)
+  toast('Successfully post all transactions')
 };
 
 export const deleteTransaction = async (id:string) => {
+  const tID=toast('Deleting transaction in progress...')
   const res = await fetch(`${BASE_URL}/transactions/${id}`,{method:'DELETE'});
   if (!res.ok) {
-    throw new Error('Failed to delete transaction');
+    const text=await res.text()
+    toast(text)
   }
+  toast.dismiss(tID)
+  toast('Successfully delete the transaction')
 };
 
 
 export const getReport = async (): Promise<Transaction[]> => {
   const res = await fetch(`${BASE_URL}/report`);
   if (!res.ok) {
-    throw new Error('Failed to fetch apps');
+    const text=await res.text()
+    toast(text)
   }
   return res.json()
 };

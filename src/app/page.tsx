@@ -2,7 +2,8 @@
 import React, {useEffect, useState} from 'react';
 import {deleteTransaction, getReport, getTransactions, postTransactions} from "@/api/transactions";
 import {Transaction} from "@/app/models/models";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Page() {
   const [transactions, setTransactions] = useState<Transaction[]>()
   const [report, setReport] = useState<any>()
@@ -97,6 +98,7 @@ export default function Page() {
       {transactions?.map(t=><tr className={'bg-white border-b dark:bg-gray-800 dark:border-gray-700'} key={t.id}><td className={'px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'}>{t.id}</td><td className={'px-6 py-4'}>{t.type}</td><td className={'px-6 py-4'}>{t.amount}</td><td className={'px-6 py-4'}>{t.date.toLocaleDateString()}</td><td className={'px-6 py-4'}>{t.memo}</td><td onClick={()=>removeTransaction(t.id)} className={'px-6 py-4 text-blue-300 cursor-pointer uppercase'}>Delete</td></tr>)}
     </tbody>
   </table>
+    <ToastContainer />
   </div>
 }
 
