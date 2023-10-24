@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-violet-50 dark:bg-black;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
