@@ -7,8 +7,8 @@ import React from 'react';
 import Menu from '@/app/components/Menu';
 
 export const metadata: Metadata = {
-  title: 'Phantom App',
-  description: 'Phantom App',
+  title: 'Finance App',
+  description: 'Finance App',
 };
 
 export default async function RootLayout({
