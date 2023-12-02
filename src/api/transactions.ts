@@ -1,7 +1,7 @@
 import { Transaction } from '@/app/models/models';
 import {toast} from "react-toastify";
 
-const BASE_URL='https://oyster-app-xcrss.ondigitalocean.app'
+const BASE_URL='https://octopus-app-csisq.ondigitalocean.app'
 
 export const getTransactions = async (): Promise<Transaction[]> => {
   const res = await fetch(`${BASE_URL}/transactions`);
